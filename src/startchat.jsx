@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Button from './button.jsx'
 import Prompt from './prompt.jsx'
 function StartChat() {
   const [hideSuggestions, setHideSuggestions] = useState(false);
+  const [isText, setIsText] = useState(false);
+  useEffect(() => {
+    setHideSuggestions(isText)
+  }, [isText])
   return (
 
     <div>
       <div className='rounded-2xl border border-borderclr bg-bg2 px-5 py-3'>
-        <textarea placeholder="How can Claude help you today?" className='text-lg h-20 w-screen max-w-2xl resize-none rounded-xl bg-bg2 text-text1 placeholder-text2 caret-text1 outline-none'></textarea>
-        <p className='text-l text-text1'>Claude 3.5Sonnet</p>
+        <textarea placeholder="How can Claude help you today?" onChange={(event) => { setIsText(Boolean(event.target.value)) }} className='text-lg h-20 w-screen max-w-2xl resize-none rounded-xl bg-bg2 text-text1 placeholder-text2 caret-text1 outline-none'></textarea>
+        <i className={`${isText ? '' : 'scale-0'} text-xs text-text1 bg-orng rounded-xl px-2.5 py-2 cursor-pointer hover:opacity-90 absolute -translate-x-7 transition-all duration-300 nf nf-fa-arrow_up`} id='up' ></i>
+        <p className='text-l text-text1'>Claude 3.5 Sonnet</p>
       </div>
 
       <div className={`p-3 border-l border-r border-b border-borderclr2 rounded-b-2xl relative max-w-2xl m-auto bg-bg3 flex flex-col transition-all ease-in-out duration-300 ${hideSuggestions ? 'max-h-14 ' : 'max-h-80'}`}>
@@ -30,7 +35,7 @@ function StartChat() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 export default StartChat
