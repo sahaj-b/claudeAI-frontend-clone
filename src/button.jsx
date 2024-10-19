@@ -22,7 +22,7 @@ function Button({
   return (
     <div className="group relative inline-block">
       <button
-        className={`${extraClass} rounded-lg px-2 py-1 text-sm font-bold text-text1 transition-all hover:bg-hoverclr hover:text-white hover:transition-all`}
+        className={`rounded-lg px-2 py-1 text-sm font-bold text-text1 transition-all hover:bg-hoverclr hover:text-white hover:transition-all ${extraClass}`}
         onClick={onClick_function}
       >
         {value}
@@ -30,11 +30,11 @@ function Button({
       {tooltip && (
         <span
           style={btnstyle}
-          className="absolute z-10 hidden text-nowrap rounded-md bg-black px-2 py-1 text-xs text-white group-hover:inline-block"
+          className="absolute z-10 hidden text-nowrap rounded-md bg-black px-2 py-1 text-xs text-white md:group-hover:inline-block"
         >
           {tooltip}
         </span>
-      )}{" "}
+      )}
     </div>
   );
 }

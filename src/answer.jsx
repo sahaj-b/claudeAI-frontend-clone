@@ -1,6 +1,6 @@
 function Answer({ value }) {
   return (
-    <div className="relative p-3 bg-bg2 text-text1 rounded-xl w-screen max-w-3xl border border-borderclr2">
+    <div className="relative p-3 bg-bg2 text-text1 rounded-xl w-screen max-w-3xl Md:max-w-[23rem] border border-borderclr2">
       {value}
       <div
         className={`px-0 py-2 absolute -bottom-3 -right-1 text-text2 border border-borderclr rounded-lg text-xs transition-all duration-200 bg-bg2 `}

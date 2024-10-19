@@ -4,7 +4,7 @@ import ChatCard from "./chatcard.jsx";
 function RecentChats() {
   const [collapseChats, setCollapseChats] = useState(false);
   return (
-    <div className="flex w-screen max-w-2xl flex-col">
+    <div className="flex md:w-screen md:max-w-2xl px-5 flex-col">
       <div className="flex justify-between">
         <div className="flex">
           <p className="text-sm font-bold text-text1">
@@ -32,7 +32,9 @@ function RecentChats() {
           View all <i className="nf nf-cod-arrow_right"></i>
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-3">
+      <div
+        className={`${collapseChats ? "max-h-0" : "max-h-96 "} transition-all duration-300 grid md:grid-cols-3 gap-3`}
+      >
         <ChatCard
           value="Lorem Ipsum Dolor Sit Amet"
           elapsed_time="5 hours ago"

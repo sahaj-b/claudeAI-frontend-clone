@@ -2,23 +2,75 @@ import { Link } from "react-router-dom";
 import Button from "./button";
 import anthropicImg from "./assets/anthropic.png";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import ChatBars from "./chatbars.jsx";
 
 function SideBar({ isPinned, setIsPinned }) {
+  const location = useLocation();
   const [mouseover, setMouseover] = useState(false);
-  var logo = <i className={" nf nf-cod-layout_sidebar_left_off p-1"}></i>;
+  let emailLeftElement = <div className="w-10"></div>;
+  let logo = <i className={" nf nf-cod-layout_sidebar_left_off p-1"}></i>;
+  let topRightButton = (
+    <Button
+      value={
+        <i
+          className={`nf nf-md-arrow_collapse_left ${!isPinned ? "rotate-180" : ""} inline-block text-xs text-text1 transition-all duration-300`}
+        ></i>
+      }
+      tooltip={`${isPinned ? "Unpin sidebar" : "Pin sidebar"}`}
+      tooltip_direction="right"
+      onClick_function={() => {
+        setIsPinned(!isPinned);
+      }}
+    />
+  );
+  let topLeftElement = (
+    <Link
+      to="/"
+      className={`${mouseover ? "opacity-100" : ""} opacity-80 pointer-events-auto text-xl font-bold`}
+    >
+      Claude
+    </Link>
+  );
+  if (window.innerWidth < 768) {
+    topLeftElement = (
+      <i
+        className="nf nf-cod-menu pointer-events-auto text-xl"
+        onClick={() => setMouseover(!mouseover)}
+      ></i>
+    );
+    topRightButton = (
+      <Button
+        value={
+          <i
+            className={`nf nf-cod-close inline-block text-xs text-text1 transition-all duration-300`}
+          ></i>
+        }
+        onClick_function={() => {
+          setMouseover(false);
+        }}
+      />
+    );
+    emailLeftElement = (
+      <span
+        className={` mx-2 w-7 rounded-3xl bg-text1 p-1 text-center font-bold text-bg1 transition-all`}
+      >
+        SB
+      </span>
+    );
+  }
   if (mouseover || isPinned) {
     logo = (
       <img
         src={anthropicImg}
-        className="inline w-7 translate-x-1 p-1 opacity-70"
+        className="inline w-7 translate-x-1 p-1 opacity-70 relative Md:-bottom-2"
       ></img>
     );
   }
   return (
     <>
       <div
-        className={`${mouseover || isPinned ? "" : "opacity-80"} pointer-events-none fixed z-20 flex h-screen w-32 flex-col justify-between px-3 py-4 text-sm text-text1`}
+        className={`${mouseover || isPinned ? "" : "md:opacity-80"} pointer-events-none fixed z-20 flex md:ml-0 h-screen w-32 flex-col justify-between px-3 py-4 text-sm text-text1`}
         onMouseOver={() => {
           !isPinned && setMouseover(true);
         }}
@@ -26,12 +78,12 @@ function SideBar({ isPinned, setIsPinned }) {
           !isPinned && setMouseover(false);
         }}
       >
-        <Link to="/" className="pointer-events-auto text-xl font-bold">
-          Claude
-        </Link>
-        <div className="flex flex-col space-y-5">
+        {topLeftElement}
+        <div
+          className={`${mouseover ? "opacity-100" : ""} Md:opacity-0 flex flex-col space-y-5`}
+        >
           <span
-            className={`${mouseover || isPinned ? "translate-x-3" : ""} w-7 rounded-3xl bg-text1 p-1 text-center font-bold text-bg1 transition-all`}
+            className={`${mouseover || isPinned ? "translate-x-3" : ""} Md:opacity-0 w-7 rounded-3xl bg-text1 p-1 text-center font-bold text-bg1 transition-all`}
           >
             SB
           </span>
@@ -40,7 +92,7 @@ function SideBar({ isPinned, setIsPinned }) {
       </div>
 
       <div
-        className={`${mouseover ? "" : "opacity-0 -translate-x-32 "} fixed z-10 flex h-screen w-72 flex-col justify-between border border-borderclr2 bg-sidebarclr p-2 transition-all`}
+        className={`${mouseover ? "" : "opacity-0 md:-translate-x-32 -translate-x-96"} fixed z-10 flex h-screen w-72 flex-col justify-between border border-borderclr2 bg-sidebarclr backdrop-blur-[7px] p-2 transition-all`}
         onMouseOver={() => {
           !isPinned && setMouseover(true);
         }}
@@ -51,24 +103,12 @@ function SideBar({ isPinned, setIsPinned }) {
         <div className="flex flex-col justify-evenly space-y-2 ">
           <div className="my-2 flex justify-between">
             <div></div>
-
-            <Button
-              value={
-                <i
-                  className={`nf nf-md-arrow_collapse_left ${!isPinned ? "rotate-180" : ""} inline-block text-xs text-text1 transition-all duration-300`}
-                ></i>
-              }
-              tooltip={`${isPinned ? "Unpin sidebar" : "Pin sidebar"}`}
-              tooltip_direction="right"
-              onClick_function={() => {
-                setIsPinned(!isPinned);
-              }}
-            />
+            {topRightButton}
           </div>
 
           <Link
             to="/"
-            className="m-0 cursor-pointer rounded-md bg-bg6 px-2 py-1 font-bold text-orng"
+            className={`${location.pathname == "/" ? "bg-bg6" : "hover:bg-bg6"} m-0 cursor-pointer rounded-md px-2 py-1 font-bold text-orng`}
           >
             <i className="nf nf-md-chat_plus_outline"></i> &nbsp;Start new chat
           </Link>
@@ -87,7 +127,10 @@ function SideBar({ isPinned, setIsPinned }) {
               Recents
             </p>
             <div>
-              <ChatBars value={"Lorem Ipsum Dolor Sit Amet"} />
+              <ChatBars
+                value={"Lorem Ipsum Dolor Sit Amet"}
+                selected={location.pathname == "/chat"}
+              />
               <ChatBars value={"Consectetur Adipiscing Elit"} />
               <ChatBars value={"Aenean Ac Elit Sollicitudin Ipsum "} />
               <ChatBars value={"Etiam Rutrum, Est Ac Cursus"} />
@@ -101,15 +144,17 @@ function SideBar({ isPinned, setIsPinned }) {
             </div>
           </div>
 
-          <div className="h-[4.2rem]"> </div>
+          <div className="md:h-[4.2rem] h-[12.5rem]"> </div>
 
           <div>
             <div className="mx-auto flex w-[calc(100%-2rem)] items-center justify-center rounded-t-md border-l border-r border-t border-borderclr2 bg-bg3 py-1 text-sm text-text2">
               Free plan
             </div>
             <div className="mx-auto flex w-[calc(100%-1rem)] cursor-pointer rounded-md border border-borderclr2 bg-bg4 py-3 text-sm font-bold text-text1">
-              <div className="w-10"></div>
-              <div>abcxyz123@gmail.com</div>
+              {emailLeftElement}
+              <div className="font-sans Md:translate-y-1">
+                abcxyz123@gmail.com
+              </div>
               <i className="nf nf-cod-chevron_down relative top-1 ml-10 text-xs"></i>
             </div>
           </div>

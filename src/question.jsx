@@ -3,7 +3,7 @@ function Question({ value }) {
   const [hovering, setHovering] = useState(false);
   return (
     <div
-      className="relative flex justify-left bg-bg4 text-text1 rounded-xl p-3 w-screen max-w-3xl"
+      className="relative flex justify-left bg-bg4 text-text1 rounded-xl p-3 w-screen max-w-3xl Md:max-w-[23rem]"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >

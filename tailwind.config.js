@@ -16,9 +16,30 @@ export default {
         "bbg": "#272D34",
         "borderclr": "#52514B",
         "borderclr2": "#3A3933",
-        "sidebarclr": "#24231F",
+        "sidebarclr": "#24231Fcc",
         "hoverclr": "#1C1B18",
         "orng": "#B6613C"
+      },
+      fontFamily: {
+        merri: ["Merriweather", 'sans'],
+        karla: ['"Karla"', 'sans'],
+        rethink: ['"Rethink Sans"', 'sans'],
+        exo: ['"Exo 2"', 'sans'],
+        zilla: ['"Zilla Slab"', 'sans'],
+      },
+
+      screens: {
+        Xl: { max: "1279px" },
+        // => @media (max-width: 1279px) { ... }
+
+        Lg: { max: "1023px" },
+        // => @media (max-width: 1023px) { ... }
+
+        Md: { max: "767px" },
+        // => @media (max-width: 767px) { ... }
+
+        Sm: { max: "639px" },
+        // => @media (max-width: 639px) { ... }
       },
     },
   },

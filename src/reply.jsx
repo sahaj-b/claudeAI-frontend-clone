@@ -4,9 +4,9 @@ function Reply() {
   const [isText, setIsText] = useState(false);
   return (
     <div>
-      <div className="w-screen max-w-[50rem] h-24 flex flex-col justify-between rounded-t-2xl border-l border-t border-r border-borderclr bg-bg2 px-5 py-3 fixed bottom-0 left-[calc(50%-25rem)]">
+      <div className="w-screen max-w-[50rem] h-24 flex flex-col justify-between rounded-t-2xl border-l border-t border-r border-borderclr bg-bg2 px-5 py-3 fixed bottom-0 left-[calc(50%-25rem)] Md:left-0">
         <div
-          className={`${isText ? "max-w-[45.5rem]" : "max-w-[48rem]"} w-screen flex justify-between h-8 space-x-1 relative transition-all`}
+          className={`${isText ? "max-w-[45.5rem] Md:max-w-[calc(100%-2rem)]" : "max-w-[48rem]"} md:w-screen flex justify-between h-8 space-x-1 relative transition-all`}
         >
           <textarea
             placeholder="Reply to Claude..."

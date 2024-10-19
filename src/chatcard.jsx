@@ -9,8 +9,10 @@ function ChatCard({ value, elapsed_time, isCollapsed, delay }) {
         transition: `opacity 250ms ${delay_css}, transform 250ms ${delay_css}, color 150ms 0ms, background-color 150ms 0ms, border-color 150ms 0ms`,
       }}
     >
-      <i className="nf nf-md-chat_outline block text-sm text-text2"> </i>
-      <p className="text-md py-2 text-text1">{value}</p>
+      <i className="nf nf-md-chat_outline md:block text-sm text-text2">
+        &nbsp;
+      </i>
+      <span className="text-md py-2 text-text1">{value}</span>
       <p className="text-sm text-text2">{elapsed_time}</p>
     </Link>
   );

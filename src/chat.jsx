@@ -16,11 +16,11 @@ function Chat({ isPinned, setIsPinned }) {
     });
   });
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden font-zilla">
       <SideBar isPinned={isPinned} setIsPinned={setIsPinned} />
       <TopBar isPinned={isPinned} />
       <div
-        className={`${isPinned ? "translate-x-24" : ""} flex flex-col w-screen mt-16 items-center space-y-5`}
+        className={`${isPinned ? "translate-x-24" : ""} font-sans flex flex-col w-screen mt-16 items-center space-y-5`}
         style={{ transition: "transform 300ms" }}
       >
         <Chats />
@@ -29,14 +29,12 @@ function Chat({ isPinned, setIsPinned }) {
             value={<img src={claudeImg} />}
             tooltip="Hi, I am Claude. How can I help you today?"
             tooltip_direction="right"
-            extraClass={"size-14 hover:bg-bg1 cursor-auto px-0 py-0"}
+            extraClass=" size-14 hover:bg-bg1 cursor-auto px-0 py-0"
           />
           <Button
             value="Claude can make mistakes. Please double-check responses."
             tooltip="Knowledge limited past April 2024. Learn more"
-            extraClass={
-              "hover:bg-bg1 hover:underline text-text2 text-xs hover:text-text2 px-0 py-0"
-            }
+            extraClass="!hover:bg-bbg !hover:text-text2 hover:underline !text-text2 text-xs"
           />
         </div>
         <div className="h-24"></div>
