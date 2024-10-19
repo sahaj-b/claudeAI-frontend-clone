@@ -1,42 +1,91 @@
-import Button from "./button"
-import anthropicImg from "./assets/anthropic.png"
-import { useState } from 'react'
-import ChatBars from './chatbars.jsx'
+import { Link } from "react-router-dom";
+import Button from "./button";
+import anthropicImg from "./assets/anthropic.png";
+import { useState } from "react";
+import ChatBars from "./chatbars.jsx";
 
 function SideBar({ isPinned, setIsPinned }) {
-  const [mouseover, setMouseover] = useState(false)
-  var logo = (<i className={" nf nf-cod-layout_sidebar_left_off p-1"}></i>)
+  const [mouseover, setMouseover] = useState(false);
+  var logo = <i className={" nf nf-cod-layout_sidebar_left_off p-1"}></i>;
   if (mouseover || isPinned) {
-    logo = (<img src={anthropicImg} className="opacity-70 w-7 inline p-1 translate-x-1"></img>)
+    logo = (
+      <img
+        src={anthropicImg}
+        className="inline w-7 translate-x-1 p-1 opacity-70"
+      ></img>
+    );
   }
   return (
     <>
-      <div className={`${(mouseover || isPinned) ? '' : 'opacity-80'} text-text1 text-sm fixed h-screen w-32 py-4 px-3 flex flex-col justify-between z-20 pointer-events-none`} onMouseOver={() => { !isPinned && setMouseover(true) }} onMouseOut={() => { !isPinned && setMouseover(false) }}>
-        <span className="text-xl font-bold">Claude</span>
+      <div
+        className={`${mouseover || isPinned ? "" : "opacity-80"} pointer-events-none fixed z-20 flex h-screen w-32 flex-col justify-between px-3 py-4 text-sm text-text1`}
+        onMouseOver={() => {
+          !isPinned && setMouseover(true);
+        }}
+        onMouseOut={() => {
+          !isPinned && setMouseover(false);
+        }}
+      >
+        <Link to="/" className="pointer-events-auto text-xl font-bold">
+          Claude
+        </Link>
         <div className="flex flex-col space-y-5">
-          <span className={`font-bold rounded-3xl text-bg1 bg-text1 w-7 text-center p-1 transition-all ${(mouseover || isPinned) ? 'translate-x-3' : ''}`}>SB</span>
+          <span
+            className={`${mouseover || isPinned ? "translate-x-3" : ""} w-7 rounded-3xl bg-text1 p-1 text-center font-bold text-bg1 transition-all`}
+          >
+            SB
+          </span>
           {logo}
-
         </div>
-      </div >
-      <div className={`flex flex-col justify-between bg-sidebarclr w-72 h-screen border border-borderclr2 fixed p-2 z-10 transition-all ${mouseover ? '' : '-translate-x-32 opacity-0 '}`} onMouseOver={() => { !isPinned && setMouseover(true) }} onMouseOut={() => { !isPinned && setMouseover(false) }}>
-        <div className="flex flex-col justify-evenly space-y-2 ">
-          <div className="flex justify-between my-2">
+      </div>
 
+      <div
+        className={`${mouseover ? "" : "opacity-0 -translate-x-32 "} fixed z-10 flex h-screen w-72 flex-col justify-between border border-borderclr2 bg-sidebarclr p-2 transition-all`}
+        onMouseOver={() => {
+          !isPinned && setMouseover(true);
+        }}
+        onMouseOut={() => {
+          !isPinned && setMouseover(false);
+        }}
+      >
+        <div className="flex flex-col justify-evenly space-y-2 ">
+          <div className="my-2 flex justify-between">
             <div></div>
 
-            <Button value={<i className={`nf nf-md-arrow_collapse_left text-text1 text-xs inline-block transition-all duration-300 ${!isPinned ? 'rotate-180' : ''}`}></i>} tooltip={`${isPinned ? 'Unpin sidebar' : 'Pin sidebar'}`} tooltip_direction="right" onClick_function={() => { setIsPinned(!isPinned) }} />
+            <Button
+              value={
+                <i
+                  className={`nf nf-md-arrow_collapse_left ${!isPinned ? "rotate-180" : ""} inline-block text-xs text-text1 transition-all duration-300`}
+                ></i>
+              }
+              tooltip={`${isPinned ? "Unpin sidebar" : "Pin sidebar"}`}
+              tooltip_direction="right"
+              onClick_function={() => {
+                setIsPinned(!isPinned);
+              }}
+            />
           </div>
 
-          <p className="text-orng bg-bg6 rounded-md py-1 px-2 m-0 font-bold cursor-pointer"><i className="nf nf-md-chat_plus_outline"></i> &nbsp;Start new chat</p>
+          <Link
+            to="/"
+            className="m-0 cursor-pointer rounded-md bg-bg6 px-2 py-1 font-bold text-orng"
+          >
+            <i className="nf nf-md-chat_plus_outline"></i> &nbsp;Start new chat
+          </Link>
 
           <div>
-            <p className="text-text1 opacity-90 my-2 mx-1 text-sm font-bold">Starred</p>
-            <div className="py-8 border border-borderclr2 rounded-lg flex items-center justify-center text-xs text-text2">Star chats you use often</div>
+            <p className="mx-1 my-2 text-sm font-bold text-text1 opacity-90">
+              Starred
+            </p>
+            <div className="flex items-center justify-center rounded-lg border border-borderclr2 py-8 text-xs text-text2">
+              Star chats you use often
+            </div>
           </div>
 
           <div>
-            <p className="text-text1 opacity-90 my-2 mx-1 text-sm font-bold">Recents</p>
+            <p className="mx-1 my-2 text-sm font-bold text-text1 opacity-90">
+              Recents
+            </p>
             <div>
               <ChatBars value={"Lorem Ipsum Dolor Sit Amet"} />
               <ChatBars value={"Consectetur Adipiscing Elit"} />
@@ -46,24 +95,34 @@ function SideBar({ isPinned, setIsPinned }) {
               <ChatBars value={"Eiam Ente Eec Eurpis"} />
               <ChatBars value={"Lorem Ipsum Dolor Sit Amet"} />
               <ChatBars value={"Consectetur Adipiscing Elit"} />
-              <span className='text-text1 opacity-90 text-sm cursor-pointer transition-all hover:transition-all hover:opacity-100 px-1 relative top-1 '>View all <i className='nf nf-cod-arrow_right'></i></span>
+              <span className="relative top-1 cursor-pointer px-1 text-sm text-text1 opacity-90 transition-all hover:opacity-100 hover:transition-all ">
+                View all <i className="nf nf-cod-arrow_right"></i>
+              </span>
             </div>
           </div>
 
           <div className="h-[4.2rem]"> </div>
 
           <div>
-            <div className="py-1 mx-auto border-l border-r border-t border-borderclr2 rounded-t-md bg-bg3 flex w-[calc(100%-2rem)] text-text2 text-sm items-center justify-center">Free plan</div>
-            <div className="cursor-pointer py-3 mx-auto border border-borderclr2 rounded-md bg-bg4 flex w-[calc(100%-1rem)] text-text1 text-sm font-bold"><div className="w-10"></div><div>abcxyz123@gmail.com</div><i className="nf nf-cod-chevron_down relative top-1 ml-10 text-xs"></i></div>
+            <div className="mx-auto flex w-[calc(100%-2rem)] items-center justify-center rounded-t-md border-l border-r border-t border-borderclr2 bg-bg3 py-1 text-sm text-text2">
+              Free plan
+            </div>
+            <div className="mx-auto flex w-[calc(100%-1rem)] cursor-pointer rounded-md border border-borderclr2 bg-bg4 py-3 text-sm font-bold text-text1">
+              <div className="w-10"></div>
+              <div>abcxyz123@gmail.com</div>
+              <i className="nf nf-cod-chevron_down relative top-1 ml-10 text-xs"></i>
+            </div>
           </div>
           <div className="flex justify-between">
             <div></div>
-            <span className="text-text2 text-xs font-bold hover:underline cursor-pointer mt-2 -translate-x-3"> <i className="nf nf-cod-question"></i> Help & support</span>
+            <span className="mt-2 -translate-x-3 cursor-pointer text-xs font-bold text-text2 hover:underline">
+              {" "}
+              <i className="nf nf-cod-question"></i> Help & support
+            </span>
           </div>
-
         </div>
       </div>
     </>
-  )
+  );
 }
-export default SideBar
+export default SideBar;
