@@ -1,5 +1,6 @@
 {
   "name": "claudeai-clone",
+  "homepage": "https://bhattkacode.github.io/claudeAI-frontend-clone",
   "private": true,
   "version": "0.0.0",
   "type": "module",
