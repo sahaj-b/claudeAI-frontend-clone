@@ -8,7 +8,7 @@ import ChatBars from "./chatbars.jsx";
 function SideBar({ isPinned, setIsPinned }) {
   const location = useLocation();
   const [mouseover, setMouseover] = useState(false);
-  let emailLeftElement = <div className="w-10"></div>;
+  let emailLeftElement = <div className="w-14"></div>;
   let logo = <i className={" nf nf-cod-layout_sidebar_left_off p-1"}></i>;
   let topRightButton = (
     <Button
@@ -53,7 +53,7 @@ function SideBar({ isPinned, setIsPinned }) {
     );
     emailLeftElement = (
       <span
-        className={` mx-2 w-7 rounded-3xl bg-text1 p-1 text-center font-bold text-bg1 transition-all`}
+        className={` mx-2 w-8 rounded-3xl bg-text1 py-1 px-2 text-center font-bold text-bg1 transition-all`}
       >
         SB
       </span>
@@ -144,9 +144,7 @@ function SideBar({ isPinned, setIsPinned }) {
             </div>
           </div>
 
-          <div className="md:h-[4.2rem] h-[12.5rem]"> </div>
-
-          <div>
+          <div className="absolute bottom-12 ">
             <div className="mx-auto flex w-[calc(100%-2rem)] items-center justify-center rounded-t-md border-l border-r border-t border-borderclr2 bg-bg3 py-1 text-sm text-text2">
               Free plan
             </div>
@@ -155,10 +153,10 @@ function SideBar({ isPinned, setIsPinned }) {
               <div className="font-sans Md:translate-y-1">
                 abcxyz123@gmail.com
               </div>
-              <i className="nf nf-cod-chevron_down relative top-1 ml-10 text-xs"></i>
+              <i className="nf nf-cod-chevron_down relative top-1 right-3 Md:right-6 ml-10 text-xs"></i>
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between w-72 pr-3 absolute bottom-2">
             <div></div>
             <span className="mt-2 -translate-x-3 cursor-pointer text-xs font-bold text-text2 hover:underline">
               {" "}
