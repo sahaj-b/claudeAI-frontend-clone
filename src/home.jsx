@@ -6,6 +6,7 @@ import SideBar from "./sidebar.jsx";
 
 function Home({ isPinned, setIsPinned }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isUpgraded, setIsUpgraded] = useState(false);
   document.body.classList.add("bg-bg1");
   // document.body.classList.add("p-10");
   useEffect(() => {
@@ -22,9 +23,14 @@ function Home({ isPinned, setIsPinned }) {
         className={`${isPinned ? "translate-x-24" : ""} m-auto md:w-screen md:max-w-2xl py-12 flex w-screen flex-col items-center space-y-8`}
         style={{ transition: "transform 300ms" }}
       >
-        <p className="rounded-3xl border border-borderclr2 bg-bg3 px-3 py-2 text-text1">
+        <p
+          className={`${isUpgraded ? "hidden" : ""} rounded-3xl border border-borderclr2 bg-bg3 px-3 py-2 text-text1`}
+        >
           Using limited free plan&nbsp;
-          <span className="cursor-pointer text-purple-400 transition-all hover:text-purple-300 hover:underline hover:transition-all">
+          <span
+            className="cursor-pointer text-purple-400 transition-all hover:text-purple-300 hover:underline hover:transition-all"
+            onClick={() => setIsUpgraded(true)}
+          >
             Upgrade
           </span>
         </p>
