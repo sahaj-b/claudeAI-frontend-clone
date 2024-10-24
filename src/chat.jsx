@@ -14,7 +14,7 @@ function Chat({ isPinned, setIsPinned }) {
       top: document.body.scrollHeight,
       behavior: "smooth",
     });
-  });
+  }, []);
   return (
     <div className="overflow-hidden font-zilla">
       <SideBar isPinned={isPinned} setIsPinned={setIsPinned} />
