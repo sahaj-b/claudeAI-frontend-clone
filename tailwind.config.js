@@ -21,10 +21,6 @@ export default {
         "orng": "#B6613C"
       },
       fontFamily: {
-        merri: ["Merriweather", 'sans'],
-        karla: ['"Karla"', 'sans'],
-        rethink: ['"Rethink Sans"', 'sans'],
-        exo: ['"Exo 2"', 'sans'],
         zilla: ['"Zilla Slab"', 'sans'],
       },
 
