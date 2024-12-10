@@ -85,7 +85,7 @@ function StartChat() {
             <Button
               value={
                 <i
-                  className={`nf nf-fa-refresh ${hideSuggestions ? "hidden" : ""} md:block absolute top-1 text-xs opacity-70 hover:opacity-100`}
+                  className={`nf nf-fa-refresh ${hideSuggestions ? "hidden" : ""} relative -top-1 text-xs opacity-70 hover:opacity-100`}
                 ></i>
               }
               tooltip="Reload suggestions"
